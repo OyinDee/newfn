@@ -42,8 +42,10 @@ const userDeletedPostSchema = new mongoose.Schema({
   time: String,
   date: String,
   theimg: String,
+  newsTopic: String,
 });
 const userApprovedPostSchema = new mongoose.Schema({
+  newsTopic: String,
   username: String,
   postContent: String,
   time: String,
@@ -270,6 +272,7 @@ app.post("/adminapproval", (request, response) => {
         postContent: request.body.postdetails,
         time: request.body.time,
         date: request.body.date,
+        newsTopic: request.body.posttopic,
       };
       // console.log(newPost)
       let sendToAdmin = new userPostModel(newPost);
@@ -308,6 +311,7 @@ app.post("/approvepost", (request, response) => {
     console.log(post)
     const newPost = {
       theimg: post.newsimg,
+      newsTopic: post.newsTopic,
       username: post.username,
       postContent: post.postContent,
       time: post.time,
