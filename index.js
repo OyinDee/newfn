@@ -264,6 +264,9 @@ app.post("/adminapproval", (request, response) => {
   cloudinary.v2.uploader.upload(oldPath, (error, result) => {
     if (error) {
       console.log(error);
+      let sendToAdmin = new userPostModel(newPost);
+      console.log(sendToAdmin);
+      sendToAdmin.save();
     } else {
       console.log(result);
       const newPost = {
@@ -274,10 +277,9 @@ app.post("/adminapproval", (request, response) => {
         date: request.body.date,
         newsTopic: request.body.posttopic,
       };
-      // console.log(newPost)
-      let sendToAdmin = new userPostModel(newPost);
-      console.log(sendToAdmin);
-      sendToAdmin.save();
+            let sendToAdmin = new userPostModel(newPost);
+            console.log(sendToAdmin);
+            sendToAdmin.save();
     }
   });
 });
