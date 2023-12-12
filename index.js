@@ -264,6 +264,13 @@ app.post("/adminapproval", (request, response) => {
   cloudinary.v2.uploader.upload(oldPath, (error, result) => {
     if (error) {
       console.log(error);
+        const newPost = {
+         username: request.body.username,
+         postContent: request.body.postdetails,
+         time: request.body.time,
+         date: request.body.date,
+         newsTopic: request.body.posttopic,
+            };
       let sendToAdmin = new userPostModel(newPost);
       console.log(sendToAdmin);
       sendToAdmin.save();
